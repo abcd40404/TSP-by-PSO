@@ -4,6 +4,7 @@ from io_helper import read_tsp, normalize
 from sys import argv
 import math, random
 from operator import attrgetter
+from time import time
 
 citySize = 0
 cities = []
@@ -77,9 +78,19 @@ class PSO:
 
         # print(len(self.swarm))
     def run(self):
+        last = 0
+        cnt = 0
         for _ in range(self.iterations):
             self.gbest = min(self.swarm, key=attrgetter('pbestCost'))
-            print(self.gbest.getPbestCost())
+            if(last != 0):
+                if(self.gbest.getPbestCost() == last):
+                    cnt = cnt + 1
+                else:
+                    cnt = 0
+            last = self.gbest.getPbestCost()
+            if(cnt >= 50):
+                break
+            print('Iteration ', _, ': ', self.gbest.getPbestCost())
             for particle in self.swarm:
                 # swapSequence = list(particle.getVelocity())
                 swapSequence = []
@@ -126,7 +137,10 @@ def init():
 def main():
     init()
     pso = PSO(iterations=100, swarmSize=2000, alpha=0.5, beta=0.3)
+    start = time()
     pso.run()
+    stop = time()
+    print("Elapsed time: ", str(stop-start))
 
 
 if __name__=='__main__':
