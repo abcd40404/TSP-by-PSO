@@ -136,7 +136,7 @@ def init():
 
 def main():
     init()
-    pso = PSO(iterations=200, swarmSize=10000, alpha=0.40, beta=0.20)
+    pso = PSO(iterations=200, swarmSize=20, alpha=0.40, beta=0.20)
     start = time()
     pso.run()
     stop = time()
