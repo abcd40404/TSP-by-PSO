@@ -1,4 +1,4 @@
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import numpy as np
 from io_helper import read_tsp, normalize
 from sys import argv
@@ -136,7 +136,7 @@ def init():
 
 def main():
     init()
-    pso = PSO(iterations=100, swarmSize=2000, alpha=0.5, beta=0.3)
+    pso = PSO(iterations=200, swarmSize=10000, alpha=0.40, beta=0.20)
     start = time()
     pso.run()
     stop = time()
